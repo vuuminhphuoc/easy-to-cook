@@ -27,7 +27,6 @@ const controlRecipes = async function () {
 
     //Render spinner
     await model.loadRecipe(id);
-
     //2) Render
     recipeView.render(model.state.recipe);
   } catch (err) {
@@ -53,10 +52,29 @@ const controlSearchResults = async function () {
   }
 };
 
+const controlSearchTap = async function () {
+  try {
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 const controlPagination = function (goToPage) {
   resultsView.render(model.getSearchResultsPage(goToPage));
 
   paginationView.render(model.state.search);
+};
+
+const controlSortSearchResult = function () {
+  resultsView.render(model.sortSearchResultsPage(!model.state.sorted));
+  if (model.state.sorted == true) {
+    document.getElementsByClassName('btn--sort')[0].innerHTML = '&#8593; SORT';
+  }
+  if (model.state.sorted == false) {
+    document.getElementsByClassName('btn--sort')[0].innerHTML = '&#8595; SORT';
+  }
+  model.state.sorted = !model.state.sorted;
+  console.log(model.state.sorted);
 };
 
 const controlServings = function (newServings) {
@@ -102,12 +120,14 @@ const controlAddRecipe = async function (newRecipe) {
   }
 };
 const init = function () {
+  addRecipeView.addHandlerUpload(controlAddRecipe);
   bookmarksView.addHandlerRender(controlBookmarks);
+  paginationView.addHandlerClick(controlPagination);
   recipeView.addHandlerRender(controlRecipes);
   recipeView.addHandlerUpdateServings(controlServings);
   recipeView.addHandlerAddBookmark(conrtolAddBookmark);
+  resultsView.addHandlerClick(controlSortSearchResult);
   searchView.addHandlerSearch(controlSearchResults);
-  paginationView.addHandlerClick(controlPagination);
-  addRecipeView.addHandlerUpload(controlAddRecipe);
+  searchView.addHandlerTap(controlSearchTap);
 };
 init();

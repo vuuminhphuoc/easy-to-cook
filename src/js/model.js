@@ -10,7 +10,9 @@ export const state = {
     results: [],
     page: 1,
     resultsPerPage: RES_PER_PAGE,
+    resultsPage: [],
   },
+  sorted: false,
   bookmarks: [],
 };
 
@@ -48,6 +50,7 @@ export const loadSearchResults = async function (query) {
   try {
     state.search.query = query;
     const data = await AJAX(`${API_URL}?search=${query}&key=${KEY}`);
+    console.log(data);
 
     state.search.results = data.data.recipes.map(rec => {
       return {
@@ -59,6 +62,7 @@ export const loadSearchResults = async function (query) {
       };
     });
     state.search.page = 1;
+    console.log(state.search.results);
   } catch (err) {
     console.error(`${err} 💥💥💥💥`);
     throw err;
@@ -69,7 +73,34 @@ export const getSearchResultsPage = function (page = state.search.page) {
   state.search.page = page;
   const start = (page - 1) * state.search.resultsPerPage;
   const end = page * state.search.resultsPerPage;
-  return state.search.results.slice(start, end);
+  state.search.resultsPage = state.search.results.slice(start, end);
+
+  return state.search.resultsPage;
+};
+
+export const sortSearchResultsPage = function (sorted) {
+  // console.log(sorted);
+  return state.search.resultsPage.slice().sort((a, b) => {
+    let nameA = a.title.toUpperCase();
+    let nameB = b.title.toUpperCase();
+    if (sorted) {
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    } else {
+      if (nameA < nameB) {
+        return 1;
+      }
+      if (nameA > nameB) {
+        return -1;
+      }
+      return 0;
+    }
+  });
 };
 
 export const updateServings = function (newServings) {
@@ -107,6 +138,7 @@ init();
 const clearBookmarks = function () {
   localStorage.clear('bookmarks');
 };
+//clearBookmarks();
 
 export const uploadRecipe = async function (newRecipe) {
   try {
