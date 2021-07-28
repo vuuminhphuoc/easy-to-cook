@@ -18,12 +18,5 @@ class SearchView {
       handler();
     });
   }
-
-  // addHandlerTap(handler) {
-  //   this._parentEl.addEventListener('keydown', function (e) {
-  //     e.preventDefault();
-  //     handler();
-  //   });
-  // }
 }
 export default new SearchView();

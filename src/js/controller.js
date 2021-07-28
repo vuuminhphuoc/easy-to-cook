@@ -52,13 +52,6 @@ const controlSearchResults = async function () {
   }
 };
 
-const controlSearchTap = async function () {
-  try {
-  } catch (err) {
-    console.log(err);
-  }
-};
-
 const controlPagination = function (goToPage) {
   resultsView.render(model.getSearchResultsPage(goToPage));
 
@@ -128,6 +121,5 @@ const init = function () {
   recipeView.addHandlerAddBookmark(conrtolAddBookmark);
   resultsView.addHandlerClick(controlSortSearchResult);
   searchView.addHandlerSearch(controlSearchResults);
-  searchView.addHandlerTap(controlSearchTap);
 };
 init();
