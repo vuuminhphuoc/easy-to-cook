@@ -50,7 +50,7 @@ class PaginationView extends View {
       <span>Page ${curPage - 1}</span>
       </button>
      
-        <p class="curPage" style="margin-right: 14.5rem">
+        <p class="curPage" style="margin-right: 11rem">
         ${curPage}
         </p>
         `;
