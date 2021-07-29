@@ -90,7 +90,7 @@
       </header>
 
       <div class="search-results">
-        <button class="btn--sort"></button>
+        <button class="btn btn--sort"></button>
 
         <ul class="results">
           <!-- 
@@ -314,7 +314,7 @@
             placeholder="Format: 'Quantity,Unit,Description'"
           />
         </div>
-        <!-- <div class="upload__column">
+        <div class="upload__column column1" style="display: none">
           <h3 class="upload__heading">Ingredients</h3>
           <label>Ingredient 7</label>
           <input
@@ -356,7 +356,59 @@
             name="ingredient-12"
             placeholder="Format: 'Quantity,Unit,Description'"
           />
-        </div> -->
+        </div>
+        <div class="upload__column column2" style="display: none">
+          <h3 class="upload__heading">Ingredients</h3>
+          <label>Ingredient 13</label>
+          <input
+            value="0.5,kg,Rice"
+            type="text"
+            required
+            name="ingredient-13"
+            placeholder="Format: 'Quantity,Unit,Description'"
+          />
+          <label>Ingredient 14</label>
+          <input
+            value="1,,Avocado"
+            type="text"
+            name="ingredient-14"
+            placeholder="Format: 'Quantity,Unit,Description'"
+          />
+          <label>Ingredient 15</label>
+          <input
+            value=",,salt"
+            type="text"
+            name="ingredient-15"
+            placeholder="Format: 'Quantity,Unit,Description'"
+          />
+          <label>Ingredient 16</label>
+          <input
+            type="text"
+            name="ingredient-16"
+            placeholder="Format: 'Quantity,Unit,Description'"
+          />
+          <label>Ingredient 17</label>
+          <input
+            type="text"
+            name="ingredient-17"
+            placeholder="Format: 'Quantity,Unit,Description'"
+          />
+          <label>Ingredient 18</label>
+          <input
+            type="text"
+            name="ingredient-18"
+            placeholder="Format: 'Quantity,Unit,Description'"
+          />
+        </div>
+        <div></div>
+        <div>
+          <button class="btn add_ingredient">
+            <span>MORE INGREDIENTS</span>
+          </button>
+          <button class="btn remove_ingredient" style="display: none">
+            <span>LESS INGREDIENT</span>
+          </button>
+        </div>
 
         <button class="btn upload__btn">
           <svg>

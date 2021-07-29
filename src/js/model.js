@@ -13,6 +13,7 @@ export const state = {
     resultsPage: [],
   },
   sorted: false,
+  addIngredient: 0,
   bookmarks: [],
 };
 

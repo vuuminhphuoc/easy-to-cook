@@ -6,6 +6,7 @@ import resultsView from './views/resultsView.js';
 import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
 import addRecipeView from './views/addRecipeView.js';
+import addIngredientView from './views/addIngredientView.js';
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
@@ -112,8 +113,16 @@ const controlAddRecipe = async function (newRecipe) {
     addRecipeView.renderError(err.message);
   }
 };
+const controlAddIngredients = function () {
+  model.state.addIngredient += 1;
+};
+const controlDeleteIngredients = function () {
+  model.state.addIngredient = model.state.addIngredient - 1;
+};
 const init = function () {
   addRecipeView.addHandlerUpload(controlAddRecipe);
+  addIngredientView.addHandlerClickAddIngredients(controlAddIngredients);
+  addIngredientView.addHandlerClickDeleteIngredients(controlDeleteIngredients);
   bookmarksView.addHandlerRender(controlBookmarks);
   paginationView.addHandlerClick(controlPagination);
   recipeView.addHandlerRender(controlRecipes);

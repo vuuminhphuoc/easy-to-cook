@@ -45,7 +45,7 @@
 .upload {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem 6rem;
+  gap: 1rem 6rem;
 
   &__column {
     display: grid;
@@ -96,4 +96,12 @@
     grid-column: 1 / -1;
     justify-self: center;
   }
+}
+.add_ingredient {
+  grid-column: 1 / -1;
+  justify-self: center;
+}
+.remove_ingredient {
+  grid-column: 1 / -1;
+  justify-self: center;
 }
