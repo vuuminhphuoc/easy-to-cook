@@ -97,9 +97,7 @@ class RecipeView extends View {
           <ul class="recipe__ingredient-list">
           ${this._data.ingredients.map(this._generateMarkupIngredient).join('')}
           </ul>
-          <button class="btn--small recipe__btn">
-                    <span>Add to shopping list</span>
-          </button>
+         
         </div>
 
         <div class="recipe__directions">
