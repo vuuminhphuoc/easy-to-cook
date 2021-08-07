@@ -9,6 +9,10 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="src/sass/main.scss" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.6/dist/css/autoComplete.css"
+    />
     <script defer src="src/js/controller.js"></script>
     <title>ETC // Search over 1,000,000 recipes</title>
   </head>
@@ -20,8 +24,20 @@
         <form class="search">
           <input
             type="text"
+            dir="ltr"
+            spellcheck="false"
+            autocorrect="off"
+            autocomplete="off"
+            autocapitalize="off"
+            id="autoComplete"
             class="search__field"
             placeholder="Search over 1,000,000 recipes..."
+            style="
+              font-size: 1.7rem;
+              background-position: unset;
+              background-size: auto;
+              border: none;
+            "
           />
           <button class="btn search__btn">
             <svg class="search__icon">
@@ -55,6 +71,27 @@
                 <span>Bookmarks</span>
               </button>
               <div class="bookmarks">
+                <button
+                  class="btn-clear-bookmarks"
+                  style="
+                    cursor: pointer;
+                    position: absolute;
+                    color: #fff;
+                    top: 0.5rem;
+                    right: 1.6rem;
+                    border: none;
+                    padding: 1rem 1rem;
+                    background-image: linear-gradient(
+                      to right bottom,
+                      #fbdb89,
+                      #f48982
+                    );
+                    border-radius: 10rem;
+                  "
+                >
+                  CLEAR BOOKMARKS AND RELOAD PAGE
+                </button>
+
                 <ul class="bookmarks__list">
                   <div class="message">
                     <div>
@@ -249,7 +286,99 @@
           </a>
         </div>
         -->
+        
       </div>
+      <div class="shopping">
+        <h2 class="heading-2">My Shopping List</h2>
+
+        <ul class="shopping__list">
+
+            <!--
+            <li class="shopping__item">
+                <div class="shopping__count">
+                    <input type="number" value="500" step="100">
+                    <p>g</p>
+                </div>
+                <p class="shopping__description">Pasta</p>
+                <button class="shopping__delete btn-tiny">
+                    <svg>
+                        <use href="img/icons.svg#icon-circle-with-cross"></use>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="shopping__item">
+                <div class="shopping__count">
+                    <input type="number" value="0.5" step="0.1">
+                    <p>cup</p>
+                </div>
+                <p class="shopping__description">Ricotta cheese</p>
+                <button class="shopping__delete btn-tiny">
+                    <svg>
+                        <use href="img/icons.svg#icon-circle-with-cross"></use>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="shopping__item">
+                <div class="shopping__count">
+                    <input type="number" value="3.5" step="0.1">
+                    <p>tbsp</p>
+                </div>
+                <p class="shopping__description">Toasted almond slices</p>
+                <button class="shopping__delete btn-tiny">
+                    <svg>
+                        <use href="img/icons.svg#icon-circle-with-cross"></use>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="shopping__item">
+                <div class="shopping__count">
+                    <input type="number" value="0.5" step="0.1">
+                    <p>tbsp</p>
+                </div>
+                <p class="shopping__description">Sea salt</p>
+                <button class="shopping__delete btn-tiny">
+                    <svg>
+                        <use href="img/icons.svg#icon-circle-with-cross"></use>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="shopping__item">
+                <div class="shopping__count">
+                    <input type="number" value="0.25" step="0.1">
+                    <p>cup</p>
+                </div>
+
+                <p class="shopping__description">Minced green onions</p>
+                <button class="shopping__delete btn-tiny">
+                    <svg>
+                        <use href="img/icons.svg#icon-circle-with-cross"></use>
+                    </svg>
+                </button>
+            </li>
+
+            <li class="shopping__item">
+                <div class="shopping__count">
+                    <input type="number" value="45" step="10">
+                    <p>g</p>
+                </div>
+                <p class="shopping__description">Sesame seeds</p>
+                <button class="shopping__delete btn-tiny">
+                    <svg>
+                        <use href="img/icons.svg#icon-circle-with-cross"></use>
+                    </svg>
+                </button>
+            </li>
+            -->
+        </ul>
+
+        
+
+    </div>
+</div>
     </div>
     <div class="overlay hidden"></div>
     <div class="add-recipe-window hidden">
@@ -258,24 +387,24 @@
         <div class="upload__column">
           <h3 class="upload__heading">Recipe data</h3>
           <label>Title</label>
-          <input value="TEST23" required name="title" type="text" />
+          <input value="" required name="title" type="text" />
           <label>URL</label>
-          <input value="TEST23" required name="sourceUrl" type="text" />
+          <input value="" required name="sourceUrl" type="text" />
           <label>Image URL</label>
-          <input value="TEST23" required name="image" type="text" />
+          <input value="" required name="image" type="text" />
           <label>Publisher</label>
-          <input value="TEST23" required name="publisher" type="text" />
+          <input value="" required name="publisher" type="text" />
           <label>Prep time</label>
-          <input value="23" required name="cookingTime" type="number" />
+          <input value="" required name="cookingTime" type="number" />
           <label>Servings</label>
-          <input value="23" required name="servings" type="number" />
+          <input value="" required name="servings" type="number" />
         </div>
 
         <div class="upload__column">
           <h3 class="upload__heading">Ingredients</h3>
           <label>Ingredient 1</label>
           <input
-            value="0.5,kg,Rice"
+            value=" , ,"
             type="text"
             required
             name="ingredient-1"
@@ -283,14 +412,12 @@
           />
           <label>Ingredient 2</label>
           <input
-            value="1,,Avocado"
             type="text"
             name="ingredient-2"
             placeholder="Format: 'Quantity,Unit,Description'"
           />
           <label>Ingredient 3</label>
           <input
-            value=",,salt"
             type="text"
             name="ingredient-3"
             placeholder="Format: 'Quantity,Unit,Description'"
@@ -318,22 +445,18 @@
           <h3 class="upload__heading">Ingredients</h3>
           <label>Ingredient 7</label>
           <input
-            value="0.5,kg,Rice"
             type="text"
-            required
             name="ingredient-7"
             placeholder="Format: 'Quantity,Unit,Description'"
           />
           <label>Ingredient 8</label>
           <input
-            value="1,,Avocado"
             type="text"
             name="ingredient-8"
             placeholder="Format: 'Quantity,Unit,Description'"
           />
           <label>Ingredient 9</label>
           <input
-            value=",,salt"
             type="text"
             name="ingredient-9"
             placeholder="Format: 'Quantity,Unit,Description'"
@@ -361,22 +484,18 @@
           <h3 class="upload__heading">Ingredients</h3>
           <label>Ingredient 13</label>
           <input
-            value="0.5,kg,Rice"
             type="text"
-            required
             name="ingredient-13"
             placeholder="Format: 'Quantity,Unit,Description'"
           />
           <label>Ingredient 14</label>
           <input
-            value="1,,Avocado"
             type="text"
             name="ingredient-14"
             placeholder="Format: 'Quantity,Unit,Description'"
           />
           <label>Ingredient 15</label>
           <input
-            value=",,salt"
             type="text"
             name="ingredient-15"
             placeholder="Format: 'Quantity,Unit,Description'"

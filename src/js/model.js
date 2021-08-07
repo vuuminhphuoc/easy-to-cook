@@ -2,6 +2,43 @@ import { async } from 'regenerator-runtime';
 import { API_URL, RES_PER_PAGE, KEY } from './config.js';
 // import { getJSON, sendJSON } from './helpers.js';
 import { AJAX } from './helpers.js';
+import autoComplete from '@tarekraafat/autocomplete.js';
+
+const autoCompleteJS = new autoComplete({
+  data: {
+    src: async query => {
+      try {
+        // Fetch Data from external Source
+        const source = await fetch(
+          `https://forkify-api.herokuapp.com/api/v2/recipes?search=${query}&key=96cdea0d-262e-4ac5-b283-70b199f1c9df`
+        );
+        // Data is array of `Objects` | `Strings`
+        const data = await source.json();
+        const recipes = data.data.recipes;
+        return recipes;
+      } catch (error) {
+        return error;
+      }
+    },
+    // Data 'Object' key to be searched
+    keys: ['title'],
+  },
+  submit: true,
+  resultItem: {
+    highlight: true,
+  },
+  resultsList: {
+    maxResults: 15,
+  },
+  events: {
+    input: {
+      selection: event => {
+        const selection = event.detail.selection.value.title;
+        autoCompleteJS.input.value = selection;
+      },
+    },
+  },
+});
 
 export const state = {
   recipe: {},
@@ -136,7 +173,7 @@ const init = function () {
 };
 init();
 
-const clearBookmarks = function () {
+export const clearBookmarks = function () {
   localStorage.clear('bookmarks');
 };
 //clearBookmarks();

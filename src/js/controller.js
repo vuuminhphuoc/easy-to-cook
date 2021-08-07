@@ -119,11 +119,17 @@ const controlAddIngredients = function () {
 const controlDeleteIngredients = function () {
   model.state.addIngredient = model.state.addIngredient - 1;
 };
+const controlClearBookmarks = function () {
+  model.clearBookmarks();
+  // location.reload();
+  window.location.href = 'http://localhost:1234/';
+};
 const init = function () {
   addRecipeView.addHandlerUpload(controlAddRecipe);
   addIngredientView.addHandlerClickAddIngredients(controlAddIngredients);
   addIngredientView.addHandlerClickDeleteIngredients(controlDeleteIngredients);
   bookmarksView.addHandlerRender(controlBookmarks);
+  bookmarksView.addHandlerClear(controlClearBookmarks);
   paginationView.addHandlerClick(controlPagination);
   recipeView.addHandlerRender(controlRecipes);
   recipeView.addHandlerUpdateServings(controlServings);

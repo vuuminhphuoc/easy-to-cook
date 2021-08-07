@@ -11,6 +11,12 @@ class BookmarksView extends View {
     window.addEventListener('load', handler);
   }
 
+  addHandlerClear(handler) {
+    document
+      .querySelector('.btn-clear-bookmarks')
+      .addEventListener('click', handler);
+  }
+
   _generateMarkup() {
     return this._data
       .map(bookmark => previewView.render(bookmark, false))
